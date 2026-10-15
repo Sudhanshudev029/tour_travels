@@ -8,8 +8,9 @@
   --gold-soft: #ebd9ae;
   --ivory: #fff8ed;
   --sandstone: #ead9c1;
-  --maroon: #581d24;
-  --maroon-deep: #3d1218;
+  --maroon: #5a141a; /* nudged toward the logo's deep red */
+  --maroon-deep: #3b0d12;
+  --ink: #000; /* logo background */
   --brown: #2b1a15;
   --muted: #6b5d53; /* 5.9:1 on ivory */
   --white: #ffffff;

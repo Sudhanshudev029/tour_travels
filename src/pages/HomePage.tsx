@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react'
 import { useCardTilt } from '../hooks/useCardTilt'
 import { useScrollVars } from '../hooks/useScrollVars'
+import { FloatingWhatsApp } from '../components/ui/FloatingWhatsApp'
 import { Footer } from '../components/layout/Footer'
 import { Header } from '../components/layout/Header'
 import { HeroSection } from '../components/home/HeroSection'
@@ -27,6 +28,7 @@ export function HomePage() {
         </Suspense>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   )
 }

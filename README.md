@@ -1,4 +1,4 @@
-# Varanasi Tours & Travels — Phase 1 (Homepage)
+# Via Kashi Tour & Travels — Phase 1 (Homepage)
 
 React 19 + TypeScript + Vite, plain CSS tokens, `three` + `@react-three/fiber` for the hero scene.
 

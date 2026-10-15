@@ -1,6 +1,7 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
-import { business, hasEmail, hasPhone } from '../../config/business'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { business, hasEmail, hasPhone, hasWhatsApp } from '../../config/business'
 import { footerServiceLinks, primaryNav } from '../../config/navigation'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { imageCredits } from '../../data/imageCredits'
 import { Brand } from './Brand'
 
@@ -8,13 +9,14 @@ const year = new Date().getFullYear()
 
 export function Footer() {
   const socials = Object.entries(business.social).filter(([, url]) => url)
-  const hasContact = hasPhone || hasEmail || business.address
+  const hasContact = hasWhatsApp || hasPhone || hasEmail || business.address
 
   return (
     <footer className="footer on-dark">
       <div className="container footer__grid">
         <div className="footer__about">
           <Brand onDark />
+          <p className="footer__tag">{business.tagline}</p>
           <p>{business.description}</p>
           {socials.length > 0 && (
             <ul className="footer__social">
@@ -55,6 +57,14 @@ export function Footer() {
           <h2 className="footer__h">Contact</h2>
           {hasContact ? (
             <ul className="footer__contact">
+              {hasWhatsApp && (
+                <li>
+                  <MessageCircle size={16} aria-hidden />{' '}
+                  <a href={buildWhatsAppUrl() ?? '#enquiry'} target="_blank" rel="noopener noreferrer">
+                    WhatsApp {business.whatsappDisplay}
+                  </a>
+                </li>
+              )}
               {hasPhone && (
                 <li>
                   <Phone size={16} aria-hidden /> <a href={`tel:+${business.phone}`}>{business.phoneDisplay}</a>

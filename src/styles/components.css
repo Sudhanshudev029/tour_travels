@@ -115,6 +115,16 @@
 .faq__panel > div { overflow: hidden; }
 .faq__panel p { padding: 0 1.25rem 1.3rem; color: var(--muted); max-width: 46rem; }
 
+/* Floating WhatsApp — round, icon-only, bottom-right */
+.wa-float {
+  position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1.25rem, env(safe-area-inset-bottom)); z-index: 70;
+  display: block; width: 52px; height: 52px; border-radius: 50%; line-height: 0;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 0.35);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s;
+}
+.wa-float:hover { transform: scale(1.08); box-shadow: 3px 4px 10px rgb(0 0 0 / 0.4); }
+.wa-float svg { width: 100%; height: 100%; border-radius: 50%; }
+
 /* 3D tilt (driven by useCardTilt) — composes with the reveal state; glare follows the pointer */
 .js .reveal.is-in[data-tilt] {
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));

@@ -8,23 +8,28 @@ const env = import.meta.env
 const digitsOnly = (v: string | undefined) => (v ?? '').replace(/\D/g, '')
 const text = (v: string | undefined) => (v ?? '').trim()
 
-const whatsapp = digitsOnly(env.VITE_WHATSAPP_NUMBER)
+/** Client-supplied WhatsApp number: +91 92358 80851 (India country code 91, digits only). */
+const DEFAULT_WHATSAPP = '919235880851'
+const whatsapp = digitsOnly(env.VITE_WHATSAPP_NUMBER) || DEFAULT_WHATSAPP
 const phone = digitsOnly(env.VITE_PHONE)
 
 export const business = {
-  /** Placeholder wordmark — replace with the real brand name. */
-  name: text(env.VITE_BUSINESS_NAME) || 'Your Brand Name',
-  descriptor: 'Tours & Travels · Varanasi',
+  name: text(env.VITE_BUSINESS_NAME) || 'Via Kashi Tour & Travels',
+  /** Short wordmark used in the header and footer. */
+  shortName: 'Via Kashi',
+  descriptor: 'Tour & Travels · Varanasi',
+  tagline: 'More than a destination',
   description:
-    'Local travel planning for Varanasi (Kashi): temple and ghat visits, Ganga boat rides, airport and station transfers, and pilgrimage routes to Prayagraj and Ayodhya.',
+    'Via Kashi — more than a destination. Hotels and stays, Ganga boat rides, cabs and tour packages in Varanasi (Kashi), with pilgrimage routes to Prayagraj and Ayodhya.',
   /** International digits-only WhatsApp number, e.g. "<country code><number>". Empty = not configured. */
   whatsapp,
+  whatsappDisplay: whatsapp === DEFAULT_WHATSAPP ? '+91 92358 80851' : `+${whatsapp}`,
   phone,
   phoneDisplay: text(env.VITE_PHONE),
   email: text(env.VITE_EMAIL),
   address: text(env.VITE_ADDRESS),
-  /** Optional logo path (served from /public). Falls back to the text wordmark. */
-  logoSrc: '' as string,
+  /** Emblem cropped from the client logo (public/images/logo.jpeg); the wordmark is live text. */
+  logoMark: { src: '/images/logo-mark-128.webp', srcSet: '/images/logo-mark-64.webp 64w, /images/logo-mark-128.webp 128w, /images/logo-mark-256.webp 256w' },
   social: {
     instagram: '',
     facebook: '',
