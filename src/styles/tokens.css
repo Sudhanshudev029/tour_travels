@@ -1,0 +1,44 @@
+:root {
+  /* Bhagwa palette */
+  --bhagwa: #e87516;
+  --bhagwa-bright: #f48a30;
+  --saffron-deep: #b94a0c;
+  --burnt: #d65a12;
+  --gold: #d6ad60;
+  --gold-soft: #ebd9ae;
+  --ivory: #fff8ed;
+  --sandstone: #ead9c1;
+  --maroon: #581d24;
+  --maroon-deep: #3d1218;
+  --brown: #2b1a15;
+  --muted: #6b5d53; /* 5.9:1 on ivory */
+  --white: #ffffff;
+
+  --bg: var(--ivory);
+  --surface: var(--white);
+  --text: var(--brown);
+  --line: rgb(43 26 21 / 0.12);
+  --focus: #1f6feb;
+
+  /* Type */
+  --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-deva: 'Noto Serif Devanagari', 'Playfair Display Variable', serif;
+
+  --fs-hero: clamp(2.5rem, 1.5rem + 5vw, 5.25rem);
+  --fs-h2: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --fs-lead: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+
+  /* Space & shape */
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --section-y: clamp(4rem, 3rem + 6vw, 8rem);
+  --maxw: 1240px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --shadow-sm: 0 1px 2px rgb(43 26 21 / 0.06), 0 2px 8px rgb(43 26 21 / 0.05);
+  --shadow-md: 0 10px 30px -12px rgb(43 26 21 / 0.28);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 72px;
+}

@@ -1,0 +1,45 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg, canvas { display: block; max-width: 100%; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.12; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.on-dark :focus-visible { outline-color: #ffd89b; }
+
+.skip-link {
+  position: fixed; left: 1rem; top: -4rem; z-index: 100;
+  background: var(--brown); color: #fff; padding: 0.75rem 1rem; border-radius: var(--r-sm);
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 1rem; }
+
+.container { width: min(100% - 2 * var(--gutter), var(--maxw)); margin-inline: auto; }
+.section { padding-block: var(--section-y); position: relative; }
+.section--sand { background: linear-gradient(180deg, #f6ead7, var(--sandstone) 140%); }
+.section--dark { background: var(--maroon-deep); color: var(--ivory); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Scroll reveal — content stays visible without JS */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); transition-delay: var(--d, 0ms); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
