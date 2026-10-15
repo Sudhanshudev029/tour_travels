@@ -5,7 +5,7 @@ import { Picture } from './Picture'
 export function AttractionCard({ place, className = '', index = 0 }: { place: Attraction; className?: string; index?: number }) {
   const ref = useReveal<HTMLElement>()
   return (
-    <article ref={ref} className={`att reveal ${className}`} style={{ ['--d' as string]: `${(index % 3) * 80}ms` }}>
+    <article ref={ref} data-tilt className={`att reveal ${className}`} style={{ ['--d' as string]: `${(index % 3) * 80}ms` }}>
       <div className="media">
         <Picture name={place.image} alt={place.alt} sizes="(min-width: 1024px) 45vw, 100vw" focus={place.focus} />
       </div>

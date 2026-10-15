@@ -14,7 +14,7 @@ interface Props {
 export function TourPackageCard({ pkg, variant = 'standard', index = 0 }: Props) {
   const ref = useReveal<HTMLElement>()
   return (
-    <article ref={ref} className={`pkg reveal${variant === 'custom' ? ' pkg--custom' : ''}`} style={{ ['--d' as string]: `${(index % 3) * 80}ms` }}>
+    <article ref={ref} data-tilt className={`pkg reveal${variant === 'custom' ? ' pkg--custom' : ''}`} style={{ ['--d' as string]: `${(index % 3) * 80}ms` }}>
       <div className="media">
         <Picture name={pkg.image} alt="" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" focus={pkg.focus} />
         {pkg.featured && <span className="pkg__badge">Suggested for first visits</span>}

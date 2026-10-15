@@ -3,6 +3,7 @@ import { featureExperiences, smallExperiences } from '../../data/experiences'
 import { useReveal } from '../../hooks/useReveal'
 import { Picture } from '../ui/Picture'
 import { SectionHeading } from '../ui/SectionHeading'
+import { ScrollJourney } from './ScrollJourney'
 
 const icons = { temple: MapIcon, food: UtensilsCrossed, route: Route }
 
@@ -25,7 +26,8 @@ function Row({ e, flip }: { e: (typeof featureExperiences)[number]; flip: boolea
 export function ExperiencesSection() {
   return (
     <section id="experiences" className="section section--dark on-dark" aria-labelledby="xp-title">
-      <div className="container">
+      <ScrollJourney />
+      <div className="container xp-content">
         <SectionHeading
           id="xp-title"
           eyebrow="Signature experiences"

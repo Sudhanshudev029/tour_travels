@@ -61,9 +61,10 @@
 .pkg {
   display: flex; flex-direction: column; background: var(--surface); border-radius: var(--r-lg); overflow: hidden;
   border: 1px solid var(--line); box-shadow: var(--shadow-sm);
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  transition: box-shadow 0.35s var(--ease);
+  position: relative;
 }
-.pkg:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.pkg:hover { box-shadow: var(--shadow-md); }
 .pkg .media { aspect-ratio: 16 / 10; }
 .pkg__badge {
   position: absolute; left: 0.9rem; top: 0.9rem; padding: 0.3rem 0.75rem; border-radius: 999px;
@@ -113,3 +114,18 @@
 .faq__item[data-open='true'] .faq__panel { grid-template-rows: 1fr; }
 .faq__panel > div { overflow: hidden; }
 .faq__panel p { padding: 0 1.25rem 1.3rem; color: var(--muted); max-width: 46rem; }
+
+/* 3D tilt (driven by useCardTilt) — composes with the reveal state; glare follows the pointer */
+.js .reveal.is-in[data-tilt] {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+  transition: opacity 0.7s var(--ease), transform 0.22s ease-out, box-shadow 0.35s var(--ease);
+  transition-delay: 0ms;
+  will-change: transform;
+}
+[data-tilt]:hover { --ty: -4px; }
+[data-tilt]::before {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgb(255 255 255 / 0.22), transparent 48%);
+}
+[data-tilt]:hover::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce), (hover: none) { [data-tilt]::before { display: none; } }

@@ -1,28 +1,13 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import * as THREE from 'three'
+import { diyaProfile, makeGlowTexture } from '../../lib/three-shared'
 
 interface Props {
   /** Element that receives a subtle parallax transform (the hero photograph). */
   parallaxEl: RefObject<HTMLElement | null>
   reducedMotion: boolean
   compact: boolean
-}
-
-/** Soft radial sprite shared by flame glows and embers. */
-function makeGlowTexture() {
-  const c = document.createElement('canvas')
-  c.width = c.height = 64
-  const g = c.getContext('2d')!
-  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32)
-  grad.addColorStop(0, 'rgba(255,230,170,1)')
-  grad.addColorStop(0.25, 'rgba(255,170,70,0.55)')
-  grad.addColorStop(1, 'rgba(255,120,20,0)')
-  g.fillStyle = grad
-  g.fillRect(0, 0, 64, 64)
-  const t = new THREE.CanvasTexture(c)
-  t.colorSpace = THREE.SRGBColorSpace
-  return t
 }
 
 const dummy = new THREE.Object3D()
@@ -36,10 +21,7 @@ function Diyas({ count, active, reduced }: { count: number; active: boolean; red
   const glowTex = useMemo(makeGlowTexture, [])
   useEffect(() => () => glowTex.dispose(), [glowTex])
 
-  const bowlProfile = useMemo(
-    () => [[0.001, 0], [0.16, 0.01], [0.3, 0.07], [0.4, 0.17], [0.42, 0.24], [0.36, 0.23], [0.3, 0.14], [0.001, 0.1]].map(([x, y]) => new THREE.Vector2(x, y)),
-    [],
-  )
+  const bowlProfile = useMemo(diyaProfile, [])
 
   const seeds = useMemo(() => {
     // Deterministic pseudo-random layout so SSR/HMR don't reshuffle the lamps.
@@ -200,6 +182,7 @@ function RiverShimmer({ active, reduced }: { active: boolean; reduced: boolean }
 /** Eases the group and the photograph toward the pointer. Reads a ref; never sets React state. */
 function Parallax({ parallaxEl, active, reduced, children }: { parallaxEl: Props['parallaxEl']; active: boolean; reduced: boolean; children: React.ReactNode }) {
   const group = useRef<THREE.Group>(null)
+  const camera = useThree((st) => st.camera)
   const target = useRef({ x: 0, y: 0 })
   const cur = useRef({ x: 0, y: 0 })
 
@@ -219,7 +202,13 @@ function Parallax({ parallaxEl, active, reduced, children }: { parallaxEl: Props
     cur.current.x += (target.current.x - cur.current.x) * 0.05
     cur.current.y += (target.current.y - cur.current.y) * 0.05
     const { x, y } = cur.current
-    if (group.current) group.current.position.set(x * -0.25, y * 0.12, 0)
+    // Scroll leaves the hero: the lamps lift away and the camera eases back (0 → 1 over one viewport).
+    const sp = Math.min(1, window.scrollY / window.innerHeight)
+    camera.position.z = 10 + sp * 2.5
+    if (group.current) {
+      group.current.position.set(x * -0.25, y * 0.12 + sp * 2.4, sp * -1.5)
+      group.current.rotation.x = sp * 0.25
+    }
     const el = parallaxEl.current
     if (el) el.style.transform = `translate3d(${(x * -14).toFixed(2)}px, ${(y * -8).toFixed(2)}px, 0) scale(1.05)`
   })

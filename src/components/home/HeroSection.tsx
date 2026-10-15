@@ -30,13 +30,15 @@ export function HeroSection() {
   return (
     <section id="top" className="hero on-dark" aria-labelledby="hero-title">
       <div ref={bgRef} className="hero__bg">
-        <Picture
-          name="hero-ghats-sunrise-boats"
-          alt="Wooden boats moored at the Varanasi ghats as the sun rises over the Ganga"
-          sizes="100vw"
-          focus="50% 55%"
-          priority
-        />
+        <div className="hero__bg-inner">
+          <Picture
+            name="hero-ghats-sunrise-boats"
+            alt="Wooden boats moored at the Varanasi ghats as the sun rises over the Ganga"
+            sizes="100vw"
+            focus="50% 55%"
+            priority
+          />
+        </div>
       </div>
       <div className="hero__shade" />
       {sceneReady && (

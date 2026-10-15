@@ -12,6 +12,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
       id={service.id}
       href="#enquiry"
       className="svc reveal"
+      data-tilt
       style={{ ['--span' as string]: service.span, ['--d' as string]: `${(index % 3) * 80}ms` }}
       onClick={() => selectInterest(service.interest)}
     >

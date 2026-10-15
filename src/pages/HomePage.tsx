@@ -1,4 +1,6 @@
 import { Suspense, lazy } from 'react'
+import { useCardTilt } from '../hooks/useCardTilt'
+import { useScrollVars } from '../hooks/useScrollVars'
 import { Footer } from '../components/layout/Footer'
 import { Header } from '../components/layout/Header'
 import { HeroSection } from '../components/home/HeroSection'
@@ -8,8 +10,11 @@ import { ServiceGrid } from '../components/home/ServiceGrid'
 const BelowFold = lazy(() => import('./HomeBelowFold'))
 
 export function HomePage() {
+  useScrollVars()
+  useCardTilt()
   return (
     <>
+      <div className="scroll-progress" aria-hidden="true" />
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
