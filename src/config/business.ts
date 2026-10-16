@@ -10,6 +10,7 @@ const text = (v: string | undefined) => (v ?? '').trim()
 
 /** Client-supplied WhatsApp number: +91 92358 80851 (India country code 91, digits only). */
 const DEFAULT_WHATSAPP = '919235880851'
+const DEFAULT_EMAIL = 'viakashitours@gmail.com'
 const whatsapp = digitsOnly(env.VITE_WHATSAPP_NUMBER) || DEFAULT_WHATSAPP
 const phone = digitsOnly(env.VITE_PHONE)
 
@@ -26,7 +27,7 @@ export const business = {
   whatsappDisplay: whatsapp === DEFAULT_WHATSAPP ? '+91 92358 80851' : `+${whatsapp}`,
   phone,
   phoneDisplay: text(env.VITE_PHONE),
-  email: text(env.VITE_EMAIL),
+  email: text(env.VITE_EMAIL) || DEFAULT_EMAIL,
   address: text(env.VITE_ADDRESS),
   /** Emblem cropped from the client logo (public/images/logo.jpeg); the wordmark is live text. */
   logoMark: { src: '/images/logo-mark-128.webp', srcSet: '/images/logo-mark-64.webp 64w, /images/logo-mark-128.webp 128w, /images/logo-mark-256.webp 256w' },

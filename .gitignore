@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment (may contain test emails/numbers)
+.env
+.env.*
+!.env.example

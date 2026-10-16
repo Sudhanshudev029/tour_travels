@@ -162,3 +162,12 @@
     @keyframes img-parallax { from { translate: 0 -6%; } to { translate: 0 6%; } }
   }
 }
+
+/* Enquiry form extras */
+.enq__honey { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.enq--done { justify-items: start; align-content: center; min-height: 22rem; }
+.enq--done svg { color: #1a7f45; }
+.btn:disabled { opacity: 0.75; cursor: progress; transform: none; box-shadow: none; }
+.spin { animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }

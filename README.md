@@ -15,3 +15,11 @@ npm run lint
 - Add real, permissioned reviews to `src/data/testimonials.ts`, then set `showTestimonials: true`.
 - Photos are from Wikimedia Commons (CC BY / CC BY-SA, GODL-India for one). Attribution is listed in the footer ("Photo credits") — keep it, or swap in the client's own photography.
 - Add `<link rel="canonical">`, Open Graph image and LocalBusiness schema once the production domain and facts are known.
+
+## Enquiry emails (Nodemailer)
+The form posts to `/api/enquiry`, handled by `server/enquiry.ts` (Nodemailer over SMTP). It runs as a Netlify Function in production (`netlify/functions/enquiry.ts`) and as Vite middleware on `npm run dev` / `npm run preview`.
+
+Server-only variables (never prefix with `VITE_`): `SMTP_USER`, `SMTP_PASS`, `ENQUIRY_TO` (default `viakashitours@gmail.com`), optional `SMTP_HOST`/`SMTP_PORT`/`MAIL_FROM`.
+- Gmail: enable 2-Step Verification, then create an **App Password** at https://myaccount.google.com/apppasswords and use it as `SMTP_PASS`.
+- Local: put them in `.env` (git-ignored) and restart `npm run dev`.
+- Netlify: add the same keys under *Site configuration → Environment variables*, then redeploy.

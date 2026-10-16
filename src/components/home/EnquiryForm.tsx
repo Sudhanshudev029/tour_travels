@@ -1,13 +1,16 @@
-import { Check, Copy, Send } from 'lucide-react'
+import { CheckCircle2, Loader2, MessageCircle, Send } from 'lucide-react'
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
-import { hasWhatsApp } from '../../config/business'
+import { business } from '../../config/business'
 import { interestOptions, onInterestSelected } from '../../lib/enquiry'
+import { isValidPhone, PHONE_ERROR } from '../../lib/phone'
+import { sendEnquiry } from '../../lib/sendEnquiry'
 import { buildEnquiryMessage, buildWhatsAppUrl } from '../../lib/whatsapp'
 import { Button } from '../ui/Button'
 
 interface Values {
   name: string
   phone: string
+  email: string
   travelDate: string
   groupSize: string
   interest: string
@@ -15,15 +18,15 @@ interface Values {
 }
 type Errors = Partial<Record<keyof Values, string>>
 
-const empty: Values = { name: '', phone: '', travelDate: '', groupSize: '2', interest: interestOptions[0], notes: '' }
+const empty: Values = { name: '', phone: '', email: '', travelDate: '', groupSize: '2', interest: interestOptions[0], notes: '' }
 
 const localISODate = (d = new Date()) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10)
 
 function validate(v: Values): Errors {
   const e: Errors = {}
   if (v.name.trim().length < 2) e.name = 'Please enter your name.'
-  const digits = v.phone.replace(/\D/g, '')
-  if (!/^[+\d\s()-]+$/.test(v.phone.trim()) || digits.length < 7 || digits.length > 15) e.phone = 'Enter a valid phone number (7–15 digits).'
+  if (!isValidPhone(v.phone)) e.phone = PHONE_ERROR
+  if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) e.email = 'Enter a valid email address or leave it blank.'
   if (!v.travelDate) e.travelDate = 'Choose your approximate travel date.'
   else if (v.travelDate < localISODate()) e.travelDate = 'Travel date cannot be in the past.'
   const g = Number(v.groupSize)
@@ -32,19 +35,16 @@ function validate(v: Values): Errors {
   return e
 }
 
-type Status = { kind: 'idle' } | { kind: 'opened' } | { kind: 'unconfigured'; message: string }
+type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'failed'; reason: string; whatsappUrl: string | null }
 
-/**
- * Frontend-only enquiry. There is no backend: submitting prepares a WhatsApp message with the
- * entered details. We never claim an enquiry was "submitted" — the visitor sends it in WhatsApp.
- */
+/** Enquiries are emailed via our /api/enquiry endpoint (Nodemailer). "Sent" is only shown after the server confirms. */
 export function EnquiryForm() {
   const uid = useId()
   const [values, setValues] = useState<Values>(empty)
   const [errors, setErrors] = useState<Errors>({})
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
-  const [copied, setCopied] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const honey = useRef<HTMLInputElement>(null)
 
   useEffect(() => onInterestSelected((interest) => setValues((v) => ({ ...v, interest }))), [])
 
@@ -53,34 +53,26 @@ export function EnquiryForm() {
     if (errors[k]) setErrors((x) => ({ ...x, [k]: undefined }))
   }
 
-  const submit = (ev: FormEvent) => {
+  const submit = async (ev: FormEvent) => {
     ev.preventDefault()
+    if (status.kind === 'sending') return
     const errs = validate(values)
     setErrors(errs)
-    setStatus({ kind: 'idle' })
     const firstBad = (Object.keys(errs) as (keyof Values)[])[0]
     if (firstBad) {
+      setStatus({ kind: 'idle' })
       formRef.current?.querySelector<HTMLElement>(`[name="${firstBad}"]`)?.focus()
       return
     }
+    setStatus({ kind: 'sending' })
     const pretty = new Date(`${values.travelDate}T00:00:00`).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
-    const message = buildEnquiryMessage({ ...values, travelDate: pretty })
-    const url = buildWhatsAppUrl(message)
-    if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer')
-      setStatus({ kind: 'opened' })
+    const details = { ...values, travelDate: pretty }
+    const result = await sendEnquiry(details, honey.current?.value ?? '')
+    if (result.ok) {
+      setStatus({ kind: 'sent' })
+      setValues(empty)
     } else {
-      setStatus({ kind: 'unconfigured', message })
-    }
-  }
-
-  const copy = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
-    } catch {
-      /* clipboard unavailable — the text stays selectable in the box */
+      setStatus({ kind: 'failed', reason: result.reason, whatsappUrl: buildWhatsAppUrl(buildEnquiryMessage(details)) })
     }
   }
 
@@ -97,12 +89,30 @@ export function EnquiryForm() {
       </p>
     ) : null
 
+  if (status.kind === 'sent') {
+    return (
+      <div className="enq enq--done" role="status">
+        <CheckCircle2 size={44} aria-hidden />
+        <h3>Thank you — enquiry sent</h3>
+        <p>
+          Your enquiry has been emailed to {business.shortName}. We’ll get back to you on the phone number you shared.
+        </p>
+        <Button variant="outline" size="sm" onClick={() => setStatus({ kind: 'idle' })}>
+          Send another enquiry
+        </Button>
+      </div>
+    )
+  }
+
+  const sending = status.kind === 'sending'
+
   return (
     <form ref={formRef} className="enq" onSubmit={submit} noValidate aria-labelledby={`${uid}-title`}>
       <h3 id={`${uid}-title`}>Plan your Kashi trip</h3>
-      <p className="enq__intro">
-        Tell us a little about your trip. {hasWhatsApp ? 'This opens WhatsApp with your details filled in.' : 'WhatsApp is not connected yet, so we’ll prepare your message for you to copy.'}
-      </p>
+      <p className="enq__intro">Tell us a little about your trip and we’ll reply with options and a quote.</p>
+
+      {/* Honeypot: hidden from people, tempting to bots */}
+      <input ref={honey} type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="enq__honey" />
 
       <div className="enq__grid">
         <div className="field">
@@ -112,8 +122,13 @@ export function EnquiryForm() {
         </div>
         <div className="field">
           <label htmlFor={`${uid}-phone`}>Phone number</label>
-          <input {...field('phone')} type="tel" inputMode="tel" autoComplete="tel" placeholder="+91…" value={values.phone} onChange={set('phone')} required />
+          <input {...field('phone')} type="tel" inputMode="tel" autoComplete="tel" placeholder="98765 43210 or +91…" maxLength={20} value={values.phone} onChange={set('phone')} required />
           {err('phone')}
+        </div>
+        <div className="field field--wide">
+          <label htmlFor={`${uid}-email`}>Email (optional)</label>
+          <input {...field('email')} type="email" autoComplete="email" value={values.email} onChange={set('email')} />
+          {err('email')}
         </div>
         <div className="field">
           <label htmlFor={`${uid}-travelDate`}>Approx. travel date</label>
@@ -146,29 +161,25 @@ export function EnquiryForm() {
         </p>
       )}
 
-      <Button type="submit" block icon={<Send size={18} aria-hidden />}>
-        {hasWhatsApp ? 'Continue on WhatsApp' : 'Prepare my enquiry'}
+      <Button type="submit" block disabled={sending} aria-busy={sending} icon={sending ? <Loader2 size={18} className="spin" aria-hidden /> : <Send size={18} aria-hidden />}>
+        {sending ? 'Sending…' : 'Send Enquiry'}
       </Button>
 
       <div aria-live="polite">
-        {status.kind === 'opened' && (
-          <p className="enq__alert enq__alert--info">
-            WhatsApp should open in a new tab with your details filled in. Your enquiry has not been sent until you press <strong>Send</strong> there.
-          </p>
-        )}
-        {status.kind === 'unconfigured' && (
-          <div className="enq__alert enq__alert--info">
+        {status.kind === 'failed' && (
+          <div className="enq__alert enq__alert--error" role="alert">
             <p>
-              <strong>Nothing has been sent.</strong> This site has no WhatsApp number or server connected yet. Copy your prepared message below and send it to the business once contact details are available.
+              <strong>We couldn’t send your enquiry.</strong> {status.reason}
             </p>
-            <textarea readOnly rows={7} value={status.message} aria-label="Prepared enquiry message" onFocus={(e) => e.currentTarget.select()} />
-            <Button size="sm" variant="outline" onClick={() => copy(status.message)} icon={copied ? <Check size={16} aria-hidden /> : <Copy size={16} aria-hidden />}>
-              {copied ? 'Copied' : 'Copy message'}
-            </Button>
+            {status.whatsappUrl && (
+              <Button href={status.whatsappUrl} size="sm" variant="outline" icon={<MessageCircle size={16} aria-hidden />}>
+                Send it on WhatsApp instead
+              </Button>
+            )}
           </div>
         )}
       </div>
-      <p className="enq__fine">This form has no server behind it — your details are not stored anywhere by this website.</p>
+      <p className="enq__fine">Your details are emailed to {business.shortName} and are not stored on this website.</p>
     </form>
   )
 }

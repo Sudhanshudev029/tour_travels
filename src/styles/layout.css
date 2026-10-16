@@ -48,8 +48,11 @@
 .footer ul { display: grid; gap: 0; }
 .footer a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0.2rem 0; }
 .footer a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-.footer__contact li { display: flex; gap: 0.6rem; align-items: flex-start; }
-.footer__contact svg { margin-top: 0.4rem; color: var(--gold); flex: none; }
+/* Every row is 44px tall (tap target); icons sit on the vertical centre of the first text line */
+.footer__contact li { display: flex; gap: 0.7rem; align-items: flex-start; }
+.footer__contact svg { flex: none; width: 18px; height: 18px; margin-top: 13px; color: var(--gold); }
+.footer__contact a, .footer__contact span { min-height: 44px; }
+.footer__contact span { display: block; padding-block: 9px; line-height: 1.65; }
 .footer__muted { font-size: 0.95rem; max-width: 18rem; }
 .footer__social { display: flex !important; gap: 1rem; }
 .footer__social a { text-transform: capitalize; }
