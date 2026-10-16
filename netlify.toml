@@ -19,3 +19,15 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# The enquiry endpoint must be matched before the single-page-app fallback below.
+[[redirects]]
+  from = "/api/enquiry"
+  to = "/.netlify/functions/enquiry"
+  status = 200
+
+# Client-side routes (/boat, /cab/swift-dzire, …) all serve the app shell.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

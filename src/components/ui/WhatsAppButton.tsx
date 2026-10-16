@@ -27,7 +27,7 @@ export function WhatsAppButton({ variant, size, message = DEFAULT_WHATSAPP_MESSA
     )
   }
   return (
-    <Button href="#enquiry" variant={variant} size={size} block={block} icon={<Send size={17} aria-hidden />} data-whatsapp-unconfigured={!hasWhatsApp}>
+    <Button href="/contact-us#enquiry" variant={variant} size={size} block={block} icon={<Send size={17} aria-hidden />} data-whatsapp-unconfigured={!hasWhatsApp}>
       {fallbackLabel}
     </Button>
   )

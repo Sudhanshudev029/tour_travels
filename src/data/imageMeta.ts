@@ -185,6 +185,12 @@ export const imageMeta = {
       1920
     ]
   },
-  "ticket-banner": {"w": 1080, "h": 360, "widths": [640, 1080]}
+  "ticket-banner": {"w": 1080, "h": 360, "widths": [640, 1080]},
+  "hotel-room-twin-1": {"w": 1086, "h": 1448, "widths": [640, 1086]},
+  "hotel-room-double-1": {"w": 1402, "h": 1122, "widths": [640, 1200, 1402]},
+  "hotel-room-twin-2": {"w": 1448, "h": 1086, "widths": [640, 1200, 1448]},
+  "hotel-room-double-2": {"w": 1086, "h": 1448, "widths": [640, 1086]},
+  "hotel-room-double-3": {"w": 1600, "h": 1432, "widths": [640, 1200, 1600]},
+  "hotel-room-double-4": {"w": 1448, "h": 1086, "widths": [640, 1200, 1448]}
 } as const satisfies Record<string, ImageMeta>
 export type ImageName = keyof typeof imageMeta

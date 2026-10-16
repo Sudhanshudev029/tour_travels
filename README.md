@@ -23,3 +23,9 @@ Server-only variables (never prefix with `VITE_`): `SMTP_USER`, `SMTP_PASS`, `EN
 - Gmail: enable 2-Step Verification, then create an **App Password** at https://myaccount.google.com/apppasswords and use it as `SMTP_PASS`.
 - Local: put them in `.env` (git-ignored) and restart `npm run dev`.
 - Netlify: add the same keys under *Site configuration → Environment variables*, then redeploy.
+
+## Pages (Phase 2)
+Routes: `/` · `/hotels` · `/cab`, `/cab/:slug` · `/boat`, `/boat/:slug` · `/packages`, `/packages/:id` · `/things-to-do` (+ `/local-food`, `/experiences`) · `/about-us` · `/contact-us`.
+Content lives in `src/data/*` (cab fleet, boats, hotel rooms, packages, things to do). The cab fleet and boat types are placeholders to confirm with the client; no prices, ratings or reviews are shown.
+On phones a bottom tab bar (Home · Boat · Cab · Stay · Tours) mirrors a mobile app. Netlify serves the SPA via the redirects in `netlify.toml`.
+Still needed from the client: privacy policy and cancellation/refund policy pages, real fleet photos, hotel location/tariff/check-in times.

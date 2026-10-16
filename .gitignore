@@ -30,3 +30,6 @@ dist-ssr
 
 # Real customer ticket (contains personal data + live QR) — never commit or publish
 source-assets/Ticket.pdf
+
+# Local-only originals (large source photos/videos and customer data); optimised copies live in public/
+source-assets/

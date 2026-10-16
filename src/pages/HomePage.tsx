@@ -1,34 +1,25 @@
 import { Suspense, lazy } from 'react'
-import { useCardTilt } from '../hooks/useCardTilt'
-import { useScrollVars } from '../hooks/useScrollVars'
-import { FloatingWhatsApp } from '../components/ui/FloatingWhatsApp'
-import { Footer } from '../components/layout/Footer'
-import { Header } from '../components/layout/Header'
 import { HeroSection } from '../components/home/HeroSection'
+import { QuickLinks } from '../components/home/QuickLinks'
 import { ServiceGrid } from '../components/home/ServiceGrid'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 // Below-the-fold sections are split into their own chunk and loaded after first paint.
 const BelowFold = lazy(() => import('./HomeBelowFold'))
 
-export function HomePage() {
-  useScrollVars()
-  useCardTilt()
+export default function HomePage() {
+  usePageMeta(
+    'Via Kashi Tour & Travels — Varanasi Tour Packages, Boat Rides, Stays & Cabs',
+    'Via Kashi Tour & Travels — more than a destination. Tour packages, Ganga boat rides, hotels and stays, cabs and pilgrimage routes to Prayagraj and Ayodhya from Varanasi. Send an enquiry for a tailored itinerary.',
+  )
   return (
     <>
-      <div className="scroll-progress" aria-hidden="true" />
-      <a className="skip-link" href="#main">
-        Skip to main content
-      </a>
-      <Header />
-      <main id="main">
-        <HeroSection />
-        <ServiceGrid />
-        <Suspense fallback={null}>
-          <BelowFold />
-        </Suspense>
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
+      <HeroSection />
+      <QuickLinks />
+      <ServiceGrid />
+      <Suspense fallback={null}>
+        <BelowFold />
+      </Suspense>
     </>
   )
 }

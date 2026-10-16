@@ -1,5 +1,6 @@
 import { CheckCircle2, Loader2, MessageCircle, Send } from 'lucide-react'
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { business } from '../../config/business'
 import { interestOptions, onInterestSelected } from '../../lib/enquiry'
 import { isValidPhone, PHONE_ERROR } from '../../lib/phone'
@@ -17,6 +18,15 @@ interface Values {
   notes: string
 }
 type Errors = Partial<Record<keyof Values, string>>
+
+const interestByKey: Record<string, (typeof interestOptions)[number]> = {
+  package: 'Tour package',
+  boat: 'Ganga boat ride',
+  cab: 'Cab / local sightseeing',
+  hotel: 'Hotel / accommodation',
+  temple: 'Temple & spiritual tour',
+  pilgrimage: 'Custom pilgrimage (Prayagraj / Ayodhya)',
+}
 
 const empty: Values = { name: '', phone: '', email: '', travelDate: '', groupSize: '2', interest: interestOptions[0], notes: '' }
 
@@ -40,7 +50,13 @@ type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind
 /** Enquiries are emailed via our /api/enquiry endpoint (Nodemailer). "Sent" is only shown after the server confirms. */
 export function EnquiryForm() {
   const uid = useId()
-  const [values, setValues] = useState<Values>(empty)
+  const [params] = useSearchParams()
+  const prefill = (): Values => {
+    const interest = interestByKey[params.get('interest') ?? '']
+    const topic = (params.get('topic') ?? '').slice(0, 80)
+    return { ...empty, ...(interest ? { interest } : {}), ...(topic ? { notes: `Enquiry about: ${topic}` } : {}) }
+  }
+  const [values, setValues] = useState<Values>(prefill)
   const [errors, setErrors] = useState<Errors>({})
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
   const formRef = useRef<HTMLFormElement>(null)

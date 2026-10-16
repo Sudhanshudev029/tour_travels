@@ -57,7 +57,7 @@ export function HeroSection() {
           Sacred ghats, timeless temples, quiet Ganga boat rides and journeys planned around you — from first darshan to the last evening aarti.
         </p>
         <div className="hero__cta">
-          <Button href="#packages">Explore Tour Packages</Button>
+          <Button href="/packages">Explore Tour Packages</Button>
           <WhatsAppButton variant="secondary" />
         </div>
         <p className="hero__note">Tell us your dates and group size — we’ll shape an itinerary and quote with you.</p>

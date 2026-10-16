@@ -1,5 +1,6 @@
 import { attractions } from '../../data/attractions'
 import { AttractionCard } from '../ui/AttractionCard'
+import { Button } from '../ui/Button'
 import { SectionHeading } from '../ui/SectionHeading'
 
 export function AttractionsSection() {
@@ -16,6 +17,11 @@ export function AttractionsSection() {
           {attractions.map((a, i) => (
             <AttractionCard key={a.id} place={a} index={i} className={i === 0 ? 'att--lead' : ''} />
           ))}
+        </div>
+        <div className="section__more">
+          <Button href="/things-to-do" variant="dark">
+            More things to do
+          </Button>
         </div>
       </div>
     </section>

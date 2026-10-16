@@ -13,7 +13,7 @@
 @supports (backdrop-filter: blur(1px)) { .site-header.is-solid { backdrop-filter: blur(10px); background: rgb(255 248 237 / 0.88); } }
 .site-header__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .site-header__actions { display: flex; align-items: center; gap: 0.5rem; }
-.site-header__cta { display: none; }
+.site-header__cta { display: none; align-items: center; gap: 0.6rem; }
 .desktop-nav { display: none; }
 .desktop-nav ul { display: flex; gap: clamp(0.9rem, 1.6vw, 1.8rem); }
 .desktop-nav a { position: relative; display: inline-block; padding: 0.5rem 0; font-weight: 600; font-size: 0.93rem; text-decoration: none; color: var(--ivory); white-space: nowrap; }
@@ -23,8 +23,7 @@
 .menu-btn { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 999px; border: 1.5px solid rgb(255 248 237 / 0.5); background: rgb(20 10 6 / 0.25); color: var(--ivory); }
 .site-header.is-solid .menu-btn { color: var(--brown); border-color: rgb(43 26 21 / 0.3); background: transparent; }
 .menu-btn--close { color: var(--brown); border-color: rgb(43 26 21 / 0.3); background: transparent; }
-@media (min-width: 640px) { .site-header__cta { display: block; } }
-@media (min-width: 1080px) { .desktop-nav { display: block; } .menu-btn { display: none; } }
+@media (min-width: 1080px) { .desktop-nav { display: block; } .site-header__cta { display: flex; } .menu-btn { display: none; } }
 
 /* Mobile drawer */
 .drawer { position: fixed; inset: 0; z-index: 90; pointer-events: none; }

@@ -8,6 +8,8 @@ import { RealMoments } from '../components/home/RealMoments'
 import { TicketPreview } from '../components/home/TicketPreview'
 import { TestimonialsSection } from '../components/home/TestimonialsSection'
 import { TourPackagesSection } from '../components/home/TourPackagesSection'
+import { ExploreDirectory } from '../components/ui/ExploreDirectory'
+import { WeatherWidget } from '../components/ui/WeatherWidget'
 import { WhyChooseUs } from '../components/home/WhyChooseUs'
 
 export default function HomeBelowFold() {
@@ -29,6 +31,8 @@ export default function HomeBelowFold() {
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />
+      <WeatherWidget />
+      <ExploreDirectory />
     </>
   )
 }

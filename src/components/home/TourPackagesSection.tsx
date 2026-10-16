@@ -1,4 +1,5 @@
 import { packageDisclaimer, tourPackages } from '../../data/packages'
+import { Button } from '../ui/Button'
 import { SectionHeading } from '../ui/SectionHeading'
 import { TourPackageCard } from '../ui/TourPackageCard'
 
@@ -21,6 +22,11 @@ export function TourPackagesSection() {
           {custom && <TourPackageCard pkg={custom} variant="custom" index={standard.length} />}
         </div>
         <p className="fine-print">{packageDisclaimer}</p>
+        <div className="section__more">
+          <Button href="/packages" variant="dark">
+            View all packages
+          </Button>
+        </div>
       </div>
     </section>
   )

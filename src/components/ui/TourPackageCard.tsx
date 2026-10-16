@@ -1,6 +1,5 @@
 import { Check, Clock } from 'lucide-react'
 import type { TourPackage } from '../../data/packages'
-import { selectInterest } from '../../lib/enquiry'
 import { useReveal } from '../../hooks/useReveal'
 import { Button } from './Button'
 import { Picture } from './Picture'
@@ -39,9 +38,14 @@ export function TourPackageCard({ pkg, variant = 'standard', index = 0 }: Props)
             <small>{pkg.startingPrice ? 'Starting from' : 'Pricing'}</small>
             <strong>{pkg.startingPrice ?? 'Request a quote'}</strong>
           </p>
-          <Button href="#enquiry" size="sm" variant={variant === 'custom' ? 'primary' : 'dark'} onClick={() => selectInterest('Tour package')} aria-label={`Enquire about ${pkg.title}`}>
-            Enquire Now
-          </Button>
+          <div className="pkg__btns">
+            <Button href={`/packages/${pkg.id}`} size="sm" variant={variant === 'custom' ? 'secondary' : 'outline'} aria-label={`View itinerary for ${pkg.title}`}>
+              View details
+            </Button>
+            <Button href={`/contact-us?interest=package&topic=${encodeURIComponent(pkg.title)}#enquiry`} size="sm" variant={variant === 'custom' ? 'primary' : 'dark'} aria-label={`Enquire about ${pkg.title}`}>
+              Enquire
+            </Button>
+          </div>
         </div>
       </div>
     </article>

@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'dark'
 
@@ -19,14 +20,24 @@ function classes({ variant = 'primary', size = 'md', block }: CommonProps, extra
     .join(' ')
 }
 
+/** Renders a router <Link> for in-app paths ("/boat"), a normal anchor for external URLs and mailto/tel. */
 export function Button(props: AnchorProps | NativeProps) {
   const { variant, size, block, icon, children, ...rest } = props
   const cls = classes({ variant, size, block, children })
   if (typeof props.href === 'string') {
     const { href, className, ...a } = rest as AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+    const merged = [cls, className].filter(Boolean).join(' ')
+    if (href.startsWith('/')) {
+      return (
+        <Link to={href} className={merged} {...a}>
+          {icon}
+          {children}
+        </Link>
+      )
+    }
     const external = /^https?:/.test(href)
     return (
-      <a href={href} className={[cls, className].filter(Boolean).join(' ')} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...a}>
+      <a href={href} className={merged} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...a}>
         {icon}
         {children}
       </a>

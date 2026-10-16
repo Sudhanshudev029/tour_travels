@@ -1,6 +1,7 @@
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { business, hasEmail, hasPhone, hasWhatsApp } from '../../config/business'
-import { footerServiceLinks, primaryNav } from '../../config/navigation'
+import { footerCompanyLinks, footerQuickLinks } from '../../config/navigation'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { imageCredits } from '../../data/imageCredits'
 import { Brand } from './Brand'
@@ -31,23 +32,23 @@ export function Footer() {
           )}
         </div>
 
-        <nav aria-label="Footer navigation">
-          <h2 className="footer__h">Explore</h2>
+        <nav aria-label="Quick links">
+          <h2 className="footer__h">Quick links</h2>
           <ul>
-            {primaryNav.map((i) => (
-              <li key={i.href}>
-                <a href={i.href}>{i.label}</a>
+            {footerQuickLinks.map((i) => (
+              <li key={i.to}>
+                <Link to={i.to}>{i.label}</Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <nav aria-label="Services">
-          <h2 className="footer__h">Services</h2>
+        <nav aria-label="Company">
+          <h2 className="footer__h">Company</h2>
           <ul>
-            {footerServiceLinks.map((i) => (
-              <li key={i.href}>
-                <a href={i.href}>{i.label}</a>
+            {footerCompanyLinks.map((i) => (
+              <li key={i.to}>
+                <Link to={i.to}>{i.label}</Link>
               </li>
             ))}
           </ul>
@@ -82,7 +83,7 @@ export function Footer() {
               )}
             </ul>
           ) : (
-            <p className="footer__muted">Contact details will be published here soon. For now, send an enquiry using the form on this page.</p>
+            <p className="footer__muted">Contact details will be published here soon. For now, send an enquiry using our contact form.</p>
           )}
         </div>
       </div>
