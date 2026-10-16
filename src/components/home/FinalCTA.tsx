@@ -9,7 +9,7 @@ export function FinalCTA() {
   return (
     <section id="enquiry" className="cta on-dark" aria-labelledby="cta-title">
       <div className="cta__bg media" aria-hidden="true">
-        <Picture name="dev-deepavali" alt="" sizes="100vw" focus="50% 50%" />
+        <Picture name="lalita-ghat-night" alt="" sizes="100vw" focus="50% 50%" />
       </div>
       <div className="container cta__grid">
         <div ref={ref} className="cta__copy reveal">

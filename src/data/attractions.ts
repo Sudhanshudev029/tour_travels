@@ -17,9 +17,9 @@ export const attractions: readonly Attraction[] = [
     tag: 'Temple',
     description:
       'The best-known Shiva temple of Kashi and a centre of Hindu pilgrimage. Entry rules and timings are set by the temple authorities and can change.',
-    image: 'kashi-vishwanath-temple',
-    alt: 'A large gateway at the Kashi Vishwanath Temple complex in Varanasi',
-    focus: '50% 40%',
+    image: 'kvt-spire-gate',
+    alt: 'The golden spire of the Kashi Vishwanath Temple seen through a stone gateway, Varanasi',
+    focus: '50% 24%',
   },
   {
     id: 'dashashwamedh',
@@ -44,9 +44,9 @@ export const attractions: readonly Attraction[] = [
     name: 'Sarnath',
     tag: 'Buddhist site',
     description: 'Where the Buddha is traditionally said to have given his first sermon. Home to the Dhamek Stupa and a museum.',
-    image: 'sarnath-dhamek-stupa',
-    alt: 'The brick Dhamek Stupa at Sarnath near Varanasi at golden hour',
-    focus: '50% 50%',
+    image: 'sarnath-dhamek-monks',
+    alt: 'Monks and visitors walking around the Dhamek Stupa at Sarnath near Varanasi',
+    focus: '50% 55%',
   },
   {
     id: 'ramnagar',

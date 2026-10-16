@@ -22,13 +22,6 @@ export const imageCredits: Record<string, ImageCredit> = {
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Morning_Aarti_at_Assi_Ghat,_Varanasi_1.jpg"
   },
-  "kashi-vishwanath-temple": {
-    "title": "Shri Kashi Vishwanath Temple 3.jpg",
-    "author": "Gannu03",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Shri_Kashi_Vishwanath_Temple_3.jpg"
-  },
   "dashashwamedh-ghat": {
     "title": "Dashashwamedh Ghat in Varanasi, Uttar Pradesh.jpg",
     "author": "Prashant Kharote",
@@ -36,33 +29,12 @@ export const imageCredits: Record<string, ImageCredit> = {
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dashashwamedh_Ghat_in_Varanasi,_Uttar_Pradesh.jpg"
   },
-  "sarnath-dhamek-stupa": {
-    "title": "14. Dhamek Stupa, Sarnath.jpg",
-    "author": "Preeti Prajapati",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:14._Dhamek_Stupa,_Sarnath.jpg"
-  },
   "ramnagar-fort": {
     "title": "Ramnagar Fort, Ramnagar, Varanasi, Uttar Pradesh 03.jpg",
     "author": "Paramanu Sarkar",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ramnagar_Fort,_Ramnagar,_Varanasi,_Uttar_Pradesh_03.jpg"
-  },
-  "ganga-boat-ride": {
-    "title": "Boat ride on the Ganges, Varanasi.jpg",
-    "author": "ampersandyslexia",
-    "license": "CC BY-SA 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Boat_ride_on_the_Ganges,_Varanasi.jpg"
-  },
-  "old-city-alley": {
-    "title": "Narrow alleyway in old city Varanasi.jpg",
-    "author": "ADARSH23456789",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Narrow_alleyway_in_old_city_Varanasi.jpg"
   },
   "prayagraj-sangam": {
     "title": "The Golden Hour at Sangam Ghat Prayagraj.jpg",
@@ -78,27 +50,6 @@ export const imageCredits: Record<string, ImageCredit> = {
     "licenseUrl": "https://data.gov.in/sites/default/files/Gazette_Notification_OGDL.pdf",
     "source": "https://commons.wikimedia.org/wiki/File:Shri_Ram_Janambhoomi_Mandir,_Ayodhya.jpg"
   },
-  "dev-deepavali": {
-    "title": "Dev Deepavali at Varanasi DSC04305 04.jpg",
-    "author": "Sumita Roy Dutta",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Dev_Deepavali_at_Varanasi_DSC04305_04.jpg"
-  },
-  "varanasi-ghats-panorama": {
-    "title": "Ghats in Varanasi, Uttar Pradesh, India (2001).jpg",
-    "author": "G41rn8",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Ghats_in_Varanasi,_Uttar_Pradesh,_India_(2001).jpg"
-  },
-  "ganges-sunrise-ghats": {
-    "title": "Varanasi ghats at the sunrise.JPG",
-    "author": "Ilya Mauter",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Varanasi_ghats_at_the_sunrise.JPG"
-  },
   "dashashwamedh-ghat-colourful": {
     "title": "DASHASHWAMEDH GHAT, VARANASI.jpg",
     "author": "Sulagna Halder",
@@ -112,5 +63,40 @@ export const imageCredits: Record<string, ImageCredit> = {
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Sunset_at_Varanasi.jpg"
+  },
+  "lalita-ghat-night": {
+    "title": "Illuminated Splendor of Lalita Ghat in Varanasi.jpg",
+    "author": "Srijitdutta.10",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Illuminated_Splendor_of_Lalita_Ghat_in_Varanasi.jpg"
+  },
+  "sarnath-dhamek-monks": {
+    "title": "Dhamekh Stupa, Sarnath0049.jpg",
+    "author": "MaximusPrasad",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dhamekh_Stupa,_Sarnath0049.jpg"
+  },
+  "kvt-spire-gate": {
+    "title": "Shree Kashi Vishwanath temple.jpg",
+    "author": "Thenerdatul",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shree_Kashi_Vishwanath_temple.jpg"
+  },
+  "ramnagar-fort-balcony": {
+    "title": "Ramnagar Fort, Uttar Pradesh 01.jpg",
+    "author": "Sujay2026",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ramnagar_Fort,_Uttar_Pradesh_01.jpg"
+  },
+  "old-city-lane": {
+    "title": "Folk Culture of Varanasi- Ghats, Streets, and Temples-013.jpg",
+    "author": "Shoot stufz",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Folk_Culture_of_Varanasi-_Ghats,_Streets,_and_Temples-013.jpg"
   }
 }

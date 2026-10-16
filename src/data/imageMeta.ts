@@ -28,27 +28,9 @@ export const imageMeta = {
       1920
     ]
   },
-  "kashi-vishwanath-temple": {
-    "w": 3840,
-    "h": 2880,
-    "widths": [
-      640,
-      1200,
-      1920
-    ]
-  },
   "dashashwamedh-ghat": {
     "w": 3840,
     "h": 1829,
-    "widths": [
-      640,
-      1200,
-      1920
-    ]
-  },
-  "sarnath-dhamek-stupa": {
-    "w": 3840,
-    "h": 2158,
     "widths": [
       640,
       1200,
@@ -62,22 +44,6 @@ export const imageMeta = {
       640,
       1200,
       1920
-    ]
-  },
-  "ganga-boat-ride": {
-    "w": 2362,
-    "h": 1565,
-    "widths": [
-      640,
-      1200,
-      1920
-    ]
-  },
-  "old-city-alley": {
-    "w": 720,
-    "h": 1279,
-    "widths": [
-      640
     ]
   },
   "prayagraj-sangam": {
@@ -98,33 +64,126 @@ export const imageMeta = {
       1920
     ]
   },
-  "dev-deepavali": {
-    "w": 1280,
-    "h": 960,
-    "widths": [
-      640,
-      1200
-    ]
-  },
-  "varanasi-ghats-panorama": {
-    "w": 3450,
-    "h": 2382,
+  "dashashwamedh-ghat-colourful": {
+    "w": 3840,
+    "h": 2880,
     "widths": [
       640,
       1200,
       1920
     ]
   },
-  "ganges-sunrise-ghats": {
-    "w": 2228,
-    "h": 1671,
+  "ganga-golden-hour-boat": {
+    "w": 3840,
+    "h": 2568,
     "widths": [
       640,
       1200,
       1920
     ]
   },
-  "dashashwamedh-ghat-colourful": {"w": 3840, "h": 2880, "widths": [640, 1200, 1920]},
-  "ganga-golden-hour-boat": {"w": 3840, "h": 2568, "widths": [640, 1200, 1920]}
+  "real-boat-m1-day": {
+    "w": 1113,
+    "h": 1414,
+    "widths": [
+      640,
+      1113
+    ]
+  },
+  "real-boat-m4-group": {
+    "w": 1448,
+    "h": 1086,
+    "widths": [
+      640,
+      1200,
+      1448
+    ]
+  },
+  "real-boat-m3-group": {
+    "w": 1086,
+    "h": 1448,
+    "widths": [
+      640,
+      1086
+    ]
+  },
+  "real-boat-m2-night": {
+    "w": 1448,
+    "h": 1086,
+    "widths": [
+      640,
+      1200,
+      1448
+    ]
+  },
+  "real-boat-morning": {
+    "w": 949,
+    "h": 1600,
+    "widths": [
+      640,
+      949
+    ]
+  },
+  "real-boat-decorated": {
+    "w": 920,
+    "h": 1600,
+    "widths": [
+      640,
+      920
+    ]
+  },
+  "real-tickets": {
+    "w": 900,
+    "h": 1600,
+    "widths": [
+      640,
+      900
+    ]
+  },
+  "lalita-ghat-night": {
+    "w": 3840,
+    "h": 2880,
+    "widths": [
+      640,
+      1200,
+      1920
+    ]
+  },
+  "sarnath-dhamek-monks": {
+    "w": 3000,
+    "h": 2000,
+    "widths": [
+      640,
+      1200,
+      1920
+    ]
+  },
+  "kvt-spire-gate": {
+    "w": 3072,
+    "h": 4096,
+    "widths": [
+      640,
+      1200,
+      1920
+    ]
+  },
+  "ramnagar-fort-balcony": {
+    "w": 3840,
+    "h": 2880,
+    "widths": [
+      640,
+      1200,
+      1920
+    ]
+  },
+  "old-city-lane": {
+    "w": 3072,
+    "h": 4096,
+    "widths": [
+      640,
+      1200,
+      1920
+    ]
+  }
 } as const satisfies Record<string, ImageMeta>
 export type ImageName = keyof typeof imageMeta

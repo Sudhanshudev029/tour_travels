@@ -34,9 +34,9 @@ export const featureExperiences: readonly FeatureExperience[] = [
     eyebrow: 'On foot',
     title: 'Walks through the old city',
     body: 'Narrow galis, temple bells, sweet shops and silk looms. A walk with someone who knows the lanes turns a maze into a story.',
-    image: 'old-city-alley',
-    alt: 'A narrow alley in the old city of Varanasi with shops and a passer-by',
-    focus: '50% 50%',
+    image: 'old-city-lane',
+    alt: 'A narrow lane lined with shops in the old city of Varanasi',
+    focus: '50% 55%',
   },
 ]
 

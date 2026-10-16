@@ -28,9 +28,9 @@ export const heroSlides: readonly HeroSlide[] = [
     caption: 'Dashashwamedh Ghat',
   },
   {
-    image: 'ganga-golden-hour-boat',
-    alt: 'A boat of pilgrims crossing the Ganga under an orange sunrise sky near Varanasi',
-    focus: '50% 62%',
-    caption: 'Golden hour on the Ganga',
+    image: 'real-boat-m2-night',
+    alt: 'Guests on a Via Kashi boat during Dev Diwali night on the Ganga, with the lit-up ghats behind',
+    focus: '50% 45%',
+    caption: 'Dev Diwali on the Ganga',
   },
 ]
