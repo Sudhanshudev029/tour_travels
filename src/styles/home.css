@@ -115,12 +115,12 @@
 @media (min-width: 1024px) { .faq-wrap { max-width: var(--maxw); grid-template-columns: 0.8fr 1.3fr; gap: 4rem; align-items: start; } .faq-wrap .sh { position: sticky; top: calc(var(--header-h) + 24px); margin-bottom: 0; } }
 
 /* ===== Final CTA + enquiry ===== */
-.cta { color: var(--ivory); position: relative; isolation: isolate; overflow: hidden; background: var(--maroon-deep); padding-block: var(--section-y); }
+.cta { color: var(--ivory); position: relative; isolation: isolate; overflow: hidden; background: var(--maroon-deep); padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
 .cta__bg { position: absolute; inset: 0; z-index: -2; background: #12080a; }
 .cta__bg img { opacity: 0.5; }
 .cta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgb(61 18 24 / 0.94) 20%, rgb(61 18 24 / 0.6)); }
-.cta__grid { display: grid; gap: 2.5rem; align-items: center; }
-.cta__copy { display: grid; gap: 1.25rem; justify-items: start; }
+.cta__grid { display: grid; gap: 2.5rem; align-items: stretch; }
+.cta__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; align-self: stretch; }
 .cta__copy h2 { font-size: var(--fs-h2); max-width: 16ch; }
 .cta__copy > p:not(.sh__eyebrow) { font-size: var(--fs-lead); color: rgb(255 248 237 / 0.85); max-width: 32rem; }
 .cta .sh__eyebrow { color: var(--gold); margin: 0; }
@@ -243,3 +243,13 @@
 .tk__rules li { padding-left: 1rem; position: relative; }
 .tk__rules li::before { content: '•'; position: absolute; left: 0.1rem; }
 @media (max-width: 420px) { .tk__top span:last-child { display: none; } }
+
+/* "What happens next" fills the CTA's left column down to the form's bottom edge */
+.cta__next { width: 100%; max-width: 32rem; margin-top: 0.75rem; padding-top: 1.5rem; border-top: 1px solid rgb(214 173 96 / 0.35); }
+.cta__next h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.cta__next ol { display: grid; gap: 0.9rem; counter-reset: nx; }
+.cta__next li { counter-increment: nx; display: grid; gap: 0.1rem; padding-left: 2.6rem; position: relative; }
+.cta__next li::before { content: counter(nx); position: absolute; left: 0; top: 0.1rem; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%; background: rgb(214 173 96 / 0.18); border: 1px solid var(--gold); color: var(--gold-soft); font-weight: 800; font-size: 0.85rem; }
+.cta__next strong { color: var(--ivory); }
+.cta__next span { color: rgb(255 248 237 / 0.75); font-size: 0.93rem; }
+@media (min-width: 960px) { .cta__next { margin-top: auto; } }

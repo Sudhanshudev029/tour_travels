@@ -32,6 +32,8 @@ button { cursor: pointer; }
 .section { padding-block: var(--section-y); position: relative; }
 .section--sand { background: linear-gradient(180deg, #f6ead7, var(--sandstone) 140%); }
 .section--dark { background: var(--maroon-deep); color: var(--ivory); }
+/* Any section on a dark background reads in ivory by default (headings inherit this). */
+.on-dark { color: var(--ivory); }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Scroll reveal — content stays visible without JS */

@@ -1,3 +1,4 @@
+import { steps } from '../../data/steps'
 import { useReveal } from '../../hooks/useReveal'
 import { Picture } from '../ui/Picture'
 import { WhatsAppButton } from '../ui/WhatsAppButton'
@@ -20,6 +21,17 @@ export function FinalCTA() {
           </p>
           <div className="cta__actions">
             <WhatsAppButton />
+          </div>
+          <div className="cta__next">
+            <h3>What happens next</h3>
+            <ol>
+              {steps.map((s) => (
+                <li key={s.id}>
+                  <strong>{s.title}</strong>
+                  <span>{s.body}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
         <div ref={formRef} className="cta__form reveal" style={{ ['--d' as string]: '120ms' }}>

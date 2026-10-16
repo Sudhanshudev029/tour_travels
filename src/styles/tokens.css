@@ -33,7 +33,7 @@
 
   /* Space & shape */
   --gutter: clamp(1rem, 4vw, 2rem);
-  --section-y: clamp(4rem, 3rem + 6vw, 8rem);
+  --section-y: clamp(3.25rem, 2.2rem + 4.5vw, 6rem);
   --maxw: 1240px;
   --r-sm: 8px;
   --r-md: 14px;
