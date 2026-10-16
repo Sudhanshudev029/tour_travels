@@ -20,8 +20,4 @@ export function makeGlowTexture() {
 export const diyaProfile = () =>
   [[0.001, 0], [0.16, 0.01], [0.3, 0.07], [0.4, 0.17], [0.42, 0.24], [0.36, 0.23], [0.3, 0.14], [0.001, 0.1]].map(([x, y]) => new THREE.Vector2(x, y))
 
-/** Tiny seeded RNG so layouts are stable across renders / HMR. */
-export function seeded(seed = 7) {
-  let s = seed
-  return () => (s = (s * 16807) % 2147483647) / 2147483647
-}
+export { seeded } from './seeded'

@@ -184,6 +184,7 @@ export const imageMeta = {
       1200,
       1920
     ]
-  }
+  },
+  "ticket-banner": {"w": 1080, "h": 360, "widths": [640, 1080]}
 } as const satisfies Record<string, ImageMeta>
 export type ImageName = keyof typeof imageMeta

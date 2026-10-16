@@ -5,6 +5,7 @@ import { FAQSection } from '../components/home/FAQSection'
 import { FinalCTA } from '../components/home/FinalCTA'
 import { HowItWorks } from '../components/home/HowItWorks'
 import { RealMoments } from '../components/home/RealMoments'
+import { TicketPreview } from '../components/home/TicketPreview'
 import { TestimonialsSection } from '../components/home/TestimonialsSection'
 import { TourPackagesSection } from '../components/home/TourPackagesSection'
 import { WhyChooseUs } from '../components/home/WhyChooseUs'
@@ -24,6 +25,7 @@ export default function HomeBelowFold() {
       <RealMoments />
       <WhyChooseUs />
       <HowItWorks />
+      <TicketPreview />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />
