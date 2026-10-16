@@ -98,5 +98,19 @@ export const imageCredits: Record<string, ImageCredit> = {
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Varanasi_ghats_at_the_sunrise.JPG"
+  },
+  "dashashwamedh-ghat-colourful": {
+    "title": "DASHASHWAMEDH GHAT, VARANASI.jpg",
+    "author": "Sulagna Halder",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DASHASHWAMEDH_GHAT,_VARANASI.jpg"
+  },
+  "ganga-golden-hour-boat": {
+    "title": "Sunset at Varanasi.jpg",
+    "author": "Juan Antonio F. Segal",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sunset_at_Varanasi.jpg"
   }
 }

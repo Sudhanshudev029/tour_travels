@@ -1,12 +1,27 @@
 /* ===== Hero ===== */
 .hero { position: relative; isolation: isolate; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: #1a0e0a; color: var(--ivory); padding-top: var(--header-h); }
 .hero__bg { position: absolute; inset: -2%; z-index: -3; transform: scale(1.05); will-change: transform; }
+/* Crossfading hero slides */
 .hero__bg-inner { position: absolute; inset: 0; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero__slides { position: absolute; inset: 0; }
+.hero__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease-in-out; animation: hero-kb 18s ease-in-out infinite alternate; animation-play-state: paused; }
+.hero__slide.is-active, .hero__slide.is-prev { animation-play-state: running; }
+.hero__slide.is-prev { opacity: 1; z-index: 0; }
+.hero__slide.is-active { opacity: 1; z-index: 1; }
+.hero__slide:first-child:last-child { opacity: 1; }
+.hero__slide img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes hero-kb { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.09) translate3d(-1.2%, -1%, 0); } }
+.hero__caption { position: absolute; z-index: 2; right: calc(max(1rem, env(safe-area-inset-right)) + 52px + 0.9rem); bottom: 1.6rem; display: none; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(255 248 237 / 0.85); }
+.hero__caption span { display: inline-flex; align-items: center; gap: 0.7rem; animation: cap-in 1.2s var(--ease) both; }
+.hero__caption span::before { content: ''; width: 28px; height: 1.5px; background: var(--gold); }
+@keyframes cap-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (min-width: 900px) { .hero__caption { display: block; } }
+@media (prefers-reduced-motion: reduce) { .hero__slide { animation: none; } .hero__caption span { animation: none; } }
 .hero__shade { position: absolute; inset: 0; z-index: -2; background:
   linear-gradient(90deg, rgb(24 11 7 / 0.78) 0%, rgb(24 11 7 / 0.4) 55%, rgb(24 11 7 / 0.12) 100%),
   linear-gradient(0deg, rgb(24 11 7 / 0.85) 0%, rgb(24 11 7 / 0) 55%),
-  linear-gradient(180deg, rgb(24 11 7 / 0.45), transparent 22%); }
+  linear-gradient(180deg, rgb(24 11 7 / 0.45), transparent 22%),
+  rgb(24 11 7 / 0.18); }
 .hero__scene { position: absolute; inset: 0; z-index: -1; pointer-events: none; animation: fadeIn 1.4s ease both; }
 .hero__scene canvas { width: 100% !important; height: 100% !important; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

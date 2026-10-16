@@ -3,8 +3,8 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useMediaQuery, useReducedMotion } from '../../hooks/useMediaQuery'
 import { canUseWebGL, prefersLightweight } from '../../lib/webgl'
 import { Button } from '../ui/Button'
-import { Picture } from '../ui/Picture'
 import { WhatsAppButton } from '../ui/WhatsAppButton'
+import { HeroCarousel } from './HeroCarousel'
 import { SceneBoundary } from './SceneBoundary'
 
 const HeroScene3D = lazy(() => import('./HeroScene3D'))
@@ -31,13 +31,7 @@ export function HeroSection() {
     <section id="top" className="hero on-dark" aria-labelledby="hero-title">
       <div ref={bgRef} className="hero__bg">
         <div className="hero__bg-inner">
-          <Picture
-            name="hero-ghats-sunrise-boats"
-            alt="Wooden boats moored at the Varanasi ghats as the sun rises over the Ganga"
-            sizes="100vw"
-            focus="50% 55%"
-            priority
-          />
+          <HeroCarousel reducedMotion={reduced} />
         </div>
       </div>
       <div className="hero__shade" />

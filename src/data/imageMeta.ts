@@ -123,6 +123,8 @@ export const imageMeta = {
       1200,
       1920
     ]
-  }
+  },
+  "dashashwamedh-ghat-colourful": {"w": 3840, "h": 2880, "widths": [640, 1200, 1920]},
+  "ganga-golden-hour-boat": {"w": 3840, "h": 2568, "widths": [640, 1200, 1920]}
 } as const satisfies Record<string, ImageMeta>
 export type ImageName = keyof typeof imageMeta
