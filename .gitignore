@@ -33,3 +33,6 @@ source-assets/Ticket.pdf
 
 # Local-only originals (large source photos/videos and customer data); optimised copies live in public/
 source-assets/
+
+# Raw client photos (WhatsApp originals, ~5.6 MB); the website uses optimised copies instead
+public/new/
